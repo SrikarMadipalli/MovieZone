@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css?family=Alex+Brush");
+
+#brand {
+  color: black;
+  font-weight: bold;
+}
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.movie_card {
+  margin-top: 5%;
+}
+.card-img-top {
+  width: 100%;
+  height: 55vh;
+  object-fit: cover;
+}
+.card-title {
+  font-weight: normal;
+  font-size: 1;
+}
+h1 {
+  font-family: "Alex Brush", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 50px;
+  text-align: center;
+  color: #1a1a1a;
+  line-height: 65px;
+}
+#home {
+  background: url("http://localhost:8080/src/assets/hero.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.jarallax {
+  height: 100vh;
+  width: 100vw;
+}
+.blockquote.b-reverse {
+  padding-right: 1rem;
+  padding-left: 0;
+  text-align: right;
+  border-right: 0.25rem solid #eceeef;
+  border-left: 0;
+}
+.floral {
+  text-align: center;
+}
+footer {
+  height: 10vh;
+  text-align: center;
+  background: lightgray;
+}
+
+footer a {
+  display: inline;
+  padding: 10px 0;
+}
+
+#social_icon_footer {
+  padding: 14px 0;
+  
+}
+
+#social_icon_footer .social:hover {
+  transform: scale(1.1);
+}
+
+#social_icon_footer .social {
+  transform: scale(0.8);
+  transition-duration: 0.5s;
+}
+
+#social_icon_footer a {
+  color: #333;
+}
+
+#social_icon_footer #social-fb:hover {
+  color: #3b5998;
+  box-shadow: none;
+}
+
+#social_icon_footer #social-tw:hover {
+  color: #4099ff;
+  box-shadow: none;
+}
+
+#social_icon_footer #social-gp:hover {
+  color: #d34836;
+  box-shadow: none;
+}
+
+#social_icon_footer #social-em:hover {
+  color: #f39c12;
+  box-shadow: none;
+}
