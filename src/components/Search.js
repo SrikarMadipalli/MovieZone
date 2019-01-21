@@ -48,6 +48,7 @@ class Search extends Component {
     const { movieSearchList,isSearching,error } = this.state;
     return (
       <React.Fragment>
+        
         {error ? <p>{error.message}</p> : null}
         <div>
           <div id="home" className="view jarallax">
@@ -88,9 +89,9 @@ class Search extends Component {
             console.log("Searching")
             const { searchName, searchImage } = movieSearch;
             return (
-          <div key={searchName}>
-          <div  className="col-lg-4 col-md-6 mb-5 search_card">
-                <div className="card card-cascade narrower collection">
+          <div key={searchImage}>
+          <div  className="col-lg-3 col-md-6 mb-5">
+                <div className="card card-cascade collection">
                 <div className="view view-cascade overlay">
                 <img className="" src={"https://image.tmdb.org/t/p/w185/" + searchImage} alt={searchName}/>
                     <a id="anchor">
@@ -105,7 +106,6 @@ class Search extends Component {
               </div>
               <br/>
           </div>
-        
      
             );
           })

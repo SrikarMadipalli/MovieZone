@@ -1,0 +1,23 @@
+#social_icon_footer #social-fb:hover {
+  color: facebook-footer;
+  box-shadow: none;
+}
+
+#social_icon_footer #social-tw:hover {
+  color: twitter-footer;
+  box-shadow: none;
+}
+
+#social_icon_footer #social-gp:hover {
+  color: googlePlus-footer;
+  box-shadow: none;
+}
+
+#social_icon_footer #social-em:hover {
+  color: email-footer;
+  box-shadow: none;
+}
+
+#social_icon_footer .social:hover {
+  transform: scale(1.1);
+}

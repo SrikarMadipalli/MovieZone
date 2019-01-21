@@ -1,0 +1,37 @@
+// Footer
+
+#social_icon_footer {
+  padding: 14px 0;
+}
+
+#social_icon_footer .social {
+  transform: scale(0.8);
+  transition-duration: 0.5s;
+}
+
+#social_icon_footer a {
+  color: footer-icons;
+}
+
+// Hero Search
+
+#home {
+  background: url("http://localhost:8080/src/assets/hero.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.jarallax {
+  height: 100vh;
+  width: 100vw;
+}
+.blockquote.b-reverse {
+  padding-right: 1rem;
+  padding-left: 0;
+  text-align: right;
+  border-right: 0.25rem solid #eceeef;
+  border-left: 0;
+}
+.floral {
+  text-align: center;
+}
