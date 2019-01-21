@@ -1,38 +1,71 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
+      - image: circleci/node:8.4.0
 
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-
-      - run: yarn install
-
+      - run: npm install
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
-      # # run tests!
-      # - run: yarn test
-
+  
+  deploy:
+    machine:
+        enabled: true
+    working_directory: ~/XTStackOverflow  
+    steps:
+       - checkout
+       - run: 
+          name: test current dir
+          command: ls -la
+       - run: 
+          name: test docker
+          command: docker ps -a
+       - run:
+          name: check image 
+          command: docker image ls    
+       - run:
+          name: docker build image
+          command: docker build -t xt .
+       - run:
+          name: Push to docker hub
+          command: |
+             docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+            #  docker push srikarsharma/xt:latest
+       - run: 
+          name: heroku container deploy
+          command: |
+            #  heroku plugins:install heroku-container-registry
+            #  heroku container:login
+            #  heroku container:push web --app $HEROKU_APP_NAME
+            # #  heroku container:release web
+            #  docker login --username=SrikarMadipalli --password=$HEROKU_API_KEY registry.heroku.com
+            #  docker image ls
+            #  docker ps -a
+            #  docker tag xt:latest registry.heroku.com/$HEROKU_APP_NAME/web
+            #  docker push registry.heroku.com/$HEROKU_APP_NAME/web
+             curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+             heroku container:login
+             heroku container:push web --app $HEROKU_APP_NAME
+             heroku container:release web --app $HEROKU_APP_NAME
+             
+      
+workflows:
+    version: 2
+    build_and_test:
+      jobs:
+        - build:
+            filters:
+              branches:
+                only: master
+        - deploy:
+            filters:
+              branches:
+                only: master
