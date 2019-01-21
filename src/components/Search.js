@@ -1,36 +1,34 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 class Search extends Component {
-
   constructor(props) {
     super(props);
-    console.log("I am Entering into the World of Search")
-    this.state= {
-      movieSearchList:[],
-      isSearching:true,
+    console.log("I am Entering into the World of Search");
+    this.state = {
+      movieSearchList: [],
+      isSearching: true,
       error: null
-    }
-
+    };
     this.searchChangeHandler = this.searchChangeHandler.bind(this);
-    this.componentDidMount("antman");
-    
   }
-  componentDidMount(searchTerm){
+  componentDidMount(searchTerm) {
     axios
       .get(
-        "https://api.themoviedb.org/3/search/movie?api_key=c38bdd9b587d57a23bc55610b6e556a2&query="+searchTerm
+        "https://api.themoviedb.org/3/search/movie?api_key=c38bdd9b587d57a23bc55610b6e556a2&query=" +
+          searchTerm
       )
       .then(response =>
         response.data.results.map(movieSearch => ({
           searchName: `${movieSearch.title}`,
-          searchImage: `${movieSearch.poster_path}`
+          searchImage: `${movieSearch.poster_path}`,
+          searchDescription:`${movieSearch.overview}`
         }))
-        ) 
+      )
       .then(movieSearchList => {
         this.setState({
           movieSearchList,
-          isSearching : false
+          isSearching: false
         });
       })
       .catch(error => this.setState({ error, isSearching: false }));
@@ -43,12 +41,10 @@ class Search extends Component {
     boundObject.componentDidMount(searchTerm);
   }
 
-  
   render() {
-    const { movieSearchList,isSearching,error } = this.state;
+    const { movieSearchList, isSearching, error } = this.state;
     return (
       <React.Fragment>
-        
         {error ? <p>{error.message}</p> : null}
         <div>
           <div id="home" className="view jarallax">
@@ -71,8 +67,6 @@ class Search extends Component {
               </div>
             </div>
           </div>
-          <h1>The Top Rated Movies</h1>
-        <br/>
           <div className="floral">
             <img
               width="120"
@@ -81,32 +75,25 @@ class Search extends Component {
               alt="Flowers"
             />
           </div>
-          <br/>
-          </div>
-          
+          <br />
+        </div>
+
         {!isSearching ? (
           movieSearchList.map(movieSearch => {
-            console.log("Searching")
-            const { searchName, searchImage } = movieSearch;
+            console.log("Searching");
+            const { searchName, searchImage ,searchDescription} = movieSearch;
             return (
-          <div key={searchImage}>
-          <div  className="col-lg-3 col-md-6 mb-5">
-                <div className="card card-cascade collection">
-                <div className="view view-cascade overlay">
-                <img className="" src={"https://image.tmdb.org/t/p/w185/" + searchImage} alt={searchName}/>
-                    <a id="anchor">
-                    <div className="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-                <br></br>
-                <div className="card-body card-body-cascade text-center">
-                  <h4 className="">{searchName}</h4>
-                </div>
-                </div>
-              </div>
-              <br/>
-          </div>
-     
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <td><img className="" src={"https://image.tmdb.org/t/p/w185/" + searchImage} alt={searchName}/></td>
+                    <td>
+                      <h2>{searchName}</h2>
+                      <p>{searchDescription}</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             );
           })
         ) : (

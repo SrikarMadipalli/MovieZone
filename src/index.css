@@ -1,3 +1,7 @@
+html{
+  margin: 0px;
+  overflow-x: hidden;
+}
 body {
   background-color: #e1e6e1;
 }
@@ -22,15 +26,16 @@ body {
   justify-content: space-evenly;
 }
 .movie_card {
-  margin-top: 5%;
+  margin-top: 3%;
 }
 .search_card {
   margin-top: 5%;
 }
 .card-img-top {
   width: 100%;
-  height: 75vh;
-  object-fit: cover;
+  height: 100%;
+  padding:2%;
+
 }
 .card-title {
   font-weight: normal;
@@ -41,6 +46,7 @@ h1 {
   font-style: normal;
   font-size: 50px;
   text-align: center;
+  margin-top: 2%;
   color: #1a1a1a;
   line-height: 65px;
 }
@@ -63,6 +69,13 @@ h1 {
 }
 .floral {
   text-align: center;
+  margin-top:3%
+}
+.floralSecond{
+  text-align: center;
+  margin-top:3%;
+  display: block;
+
 }
 footer {
   height: 10vh;
@@ -112,8 +125,12 @@ footer a {
   box-shadow: none;
 }
 
-@media (min-width: 1024px) {
-  .card-title {
-    font-weight: 25px;
+th{
+  width:10%
+}
+
+@media (max-width:768px) {
+  .jarallax{
+    height: 45vh;
   }
 }

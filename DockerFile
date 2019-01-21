@@ -1,0 +1,15 @@
+FROM node:8
+
+WORKDIR /app
+
+ADD . /app
+
+RUN npm install
+
+RUN npm run build
+
+RUN npm install -g http-server
+
+WORKDIR /app/dist
+
+CMD ["http-server", "-c1"]

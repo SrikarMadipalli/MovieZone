@@ -65,3 +65,22 @@ performSearch(searchTerm) {
       </div>
     );
   }
+
+  <div key={searchImage}>
+  <div  className="col-lg-4 col-md-6 mb-5 movie_card">
+        <div className="card card-cascade narrower collection">
+        <div className="view view-cascade overlay">
+        <img className="" src={"https://image.tmdb.org/t/p/w185/" + searchImage} alt={searchName}/>
+            <a id="anchor">
+            <div className="mask rgba-white-slight"></div>
+            </a>
+        </div>
+        <br></br>
+        <div className="card-body card-body-cascade text-center">
+          <h4 className="">{searchName}</h4>
+          <a href="#" className="btn btn-success">View</a>
+        </div>
+        </div>
+      </div>
+      <br/>
+  </div>
