@@ -1,8 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Alex+Brush");
-
+body{
+  background-color: #E1E6E1;
+}
 #brand {
-  color: black;
+  color: whitesmoke;
   font-weight: bold;
+}
+.socialnav{
+  margin-left: 90%
+
+}
+#SubHeading{
+  display: flex;
+  flex-direction: column;
 }
 .Wrapper {
   display: flex;
@@ -16,9 +26,14 @@
 .movie_card {
   margin-top: 5%;
 }
+.search_card{
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-around
+}
 .card-img-top {
   width: 100%;
-  height: 55vh;
+  height: 75vh;
   object-fit: cover;
 }
 .card-title {
@@ -26,7 +41,6 @@
   font-size: 1;
 }
 h1 {
-  font-family: "Alex Brush", cursive;
   font-weight: 400;
   font-style: normal;
   font-size: 50px;
@@ -101,4 +115,10 @@ footer a {
 #social_icon_footer #social-em:hover {
   color: #f39c12;
   box-shadow: none;
+}
+
+@media(min-width:1024px){
+  .card-title{
+    font-weight: 25px;
+  }
 }

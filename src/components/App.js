@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Search from './search';
+import Search from './Search';
 import axios from 'axios';
 
 class App extends Component {
@@ -14,18 +14,14 @@ class App extends Component {
   componentDidMount() {
     axios
       .get(
-        "https://api.themoviedb.org/3/movie/top_rated?api_key=c38bdd9b587d57a23bc55610b6e556a2&language=en-US&page=1"
+        "https://api.themoviedb.org/3/movie/top_rated?api_key=c38bdd9b587d57a23bc55610b6e556a2"
       )
       .then(response =>
         response.data.results.map(movie => ({
           name: `${movie.title}`,
           image: `${movie.poster_path}`
-        }
-        )
-        )
-        
-      )
-      
+        }))
+        ) 
       .then(movies => {
         this.setState({
           movies,
@@ -40,7 +36,7 @@ class App extends Component {
     const { isLoading, movies, error } = this.state;
     return (
       <React.Fragment>
-        <Search/>
+        <Search/>        
         {error ? <p>{error.message}</p> : null}
 
         {!isLoading ? (
@@ -52,7 +48,7 @@ class App extends Component {
                 <div className="card card-cascade narrower collection">
                 <div className="view view-cascade overlay">
                 <img className="card-img-top" src={"https://image.tmdb.org/t/p/w500/" + image} alt={name}/>
-                    <a href="#!">
+                    <a id="anchor">
                     <div className="mask rgba-white-slight"></div>
                     </a>
                 </div>

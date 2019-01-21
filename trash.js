@@ -1,6 +1,33 @@
-import React, { Component } from "react";
+performSearch(searchTerm) {
+    console.log("Performing Search");
+    const urlString =
+      "https://api.themoviedb.org/3/search/movie?api_key=c38bdd9b587d57a23bc55610b6e556a2&query="+searchTerm;
 
-class Search extends Component {
+    $.ajax({
+      url: urlString,
+      success: searchResults => {
+        console.log("Search is Fruitful");
+        // console.log("searchResults");
+        const results = searchResults.results;
+        // console.log(results[0]);
+
+        var movieRows = [];
+
+        results.forEach(movieSearch => {
+          movieSearch.poster_src =
+            "https://image.tmdb.org/t/p/w185/" + movieSearch.poster_path;
+            console.log(movieSearch.poster_src);
+          const movieRow = <MovieRow movieSearch={movieSearch} />;
+          movieRows.push(movieRow);
+        })
+        this.setState({rows:movieRows})
+      },
+      error: (xhr, status, err) => {
+        console.error("Search UnFruitful");
+      }
+    });
+  }
+
   render() {
     return (
       <div>
@@ -16,12 +43,14 @@ class Search extends Component {
                       type="text"
                       placeholder="Enter the Movie..."
                       aria-label="Search"
+                      onChange={this.searchChangeHandler}
                     />
                   </div>
                 </div>
               </blockquote>
             </div>
           </div>
+          <MovieRow/>
         </div>
         <h1>The Top Rated Movies</h1>
         <div className="floral">
@@ -32,9 +61,7 @@ class Search extends Component {
             alt="Flowers"
           />
         </div>
+        {this.state.rows}
       </div>
     );
   }
-}
-
-export default Search;
