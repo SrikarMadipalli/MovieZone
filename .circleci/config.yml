@@ -1,3 +1,7 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
 version: 2
 jobs:
   build:
@@ -10,62 +14,16 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
       - run: npm install
+
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-  
-  deploy:
-    machine:
-        enabled: true
-    working_directory: ~/XTStackOverflow  
-    steps:
-       - checkout
-       - run: 
-          name: test current dir
-          command: ls -la
-       - run: 
-          name: test docker
-          command: docker ps -a
-       - run:
-          name: check image 
-          command: docker image ls    
-       - run:
-          name: docker build image
-          command: docker build -t xt .
-       - run:
-          name: Push to docker hub
-          command: |
-             docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
-            #  docker push srikarsharma/xt:latest
-       - run: 
-          name: heroku container deploy
-          command: |
-            #  heroku plugins:install heroku-container-registry
-            #  heroku container:login
-            #  heroku container:push web --app $HEROKU_APP_NAME
-            # #  heroku container:release web
-            #  docker login --username=SrikarMadipalli --password=$HEROKU_API_KEY registry.heroku.com
-            #  docker image ls
-            #  docker ps -a
-            #  docker tag xt:latest registry.heroku.com/$HEROKU_APP_NAME/web
-            #  docker push registry.heroku.com/$HEROKU_APP_NAME/web
-             curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-             heroku container:login
-             heroku container:push web --app $HEROKU_APP_NAME
-             heroku container:release web --app $HEROKU_APP_NAME
-             
-      
-workflows:
-    version: 2
-    build_and_test:
-      jobs:
-        - build:
-            filters:
-              branches:
-                only: master
-        - deploy:
-            filters:
-              branches:
-                only: master
+        
+      # run tests!
+      #- run: yarn test
