@@ -23,7 +23,12 @@ body {
 .app {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
+}
+.cards{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .movie_card {
   margin-top: 3%;
@@ -33,7 +38,7 @@ body {
 }
 .card-img-top {
   width: 100%;
-  height: 100%;
+  height: 50vh;
   padding:2%;
 
 }
@@ -78,7 +83,6 @@ h1 {
 
 }
 footer {
-  height: 10vh;
   text-align: center;
   background: lightgray;
 }
@@ -129,8 +133,60 @@ th{
   width:10%
 }
 
+.container {
+  position: relative;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+.form-check-label{
+  margin-right: 3%;
+}
+.form-check-input{
+  margin-top: 1%;
+}
+.form-check{
+  margin-top: 1%;
+}
+p{
+  margin-bottom: 5px;
+}
 @media (max-width:768px) {
   .jarallax{
     height: 45vh;
+  }
+  .form-check{
+    display: none;
   }
 }
