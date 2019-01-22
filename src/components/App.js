@@ -12,11 +12,6 @@ class App extends Component {
     };
   }
 
-  viewMovie() {
-    const url = "https://www.themoviedb.org/movie/" + this.props.movie.id
-    window.location.href = url
-  }
-
   componentDidMount() {
     axios
       .get(
@@ -43,16 +38,7 @@ class App extends Component {
     return (
       <React.Fragment>
         
-        <Search/>   
-        <div className="floralSecond">
-            <img
-              width="120"
-              height="44"
-              src="../src/assets/floral.png"
-              alt="Flowers"
-            />
-          </div>
-          <br/>     
+        <Search/>      
         {error ? <p>{error.message}</p> : null}
 
         {!isLoading ? (
@@ -71,7 +57,7 @@ class App extends Component {
                 <br></br>
                 <div className="card-body card-body-cascade text-center">
                   <h4 className="card-title">{name}</h4>
-                  <a href="#" className="btn btn-success" onClick={this.viewMovie.bind(this)}>View</a>
+                 {/* "#" className="btn btn-success" onClick={this.viewMovie.bind(this)}>View</a> */}
                 </div>
                 </div>
               </div>
