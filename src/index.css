@@ -190,3 +190,15 @@ p{
     display: none;
   }
 }
+
+.Tableimage{
+  height:30vh;
+  width:13vw;
+}
+
+#TableTitle{
+  font-weight: bold;
+}
+#TableDesc{
+  font-size: x-large;
+}

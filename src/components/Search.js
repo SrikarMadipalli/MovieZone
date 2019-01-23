@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Cards from './cards';
+import CardsTabularLayout from './CardsTabularLayout';
 import axios from "axios";
 
 class Search extends Component {
@@ -8,7 +9,7 @@ class Search extends Component {
     console.log("I am Entering into the World of Search");
     this.state = {
       movieName:'',
-      radio:true
+      radio:false
       // radio:true
       // isSearching: true,
       
@@ -59,9 +60,16 @@ class Search extends Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
-  // layoutHandler(){
-  //   this.setState()
-  // }
+  layoutHandlerTrue(){
+    
+    this.setState({radio:true})
+    console.log(this.state.radio);
+  }
+
+  layoutHandlerFalse(){
+    this.setState({radio:false})
+    console.log(this.state.radio);
+  }
 
   render() {
     console.log(this.state);
@@ -97,9 +105,9 @@ class Search extends Component {
                         // onClick={this.searchPositionHandler}
                       />
                       <div className="form-check" >
-                        <input type="radio" className="form-check-input" id="materialUnchecked" name="materialExampleRadios" />
+                        <input type="radio" className="form-check-input" id="materialUnchecked" onClick ={this.layoutHandlerTrue.bind(this)} name="materialExampleRadios" />
                         <label className="form-check-label">Tabular View</label>
-                        <input type="radio" className="form-check-input" id="materialUnchecked" name="materialExampleRadios" />
+                        <input type="radio" className="form-check-input" id="materialUnchecked" onClick ={this.layoutHandlerFalse.bind(this)} name="materialExampleRadios" />
                         <label className="form-check-label">Grid View</label>
                       </div>
 
@@ -143,7 +151,11 @@ class Search extends Component {
             <h3>Searching...</h3>
           )} */}
           
-      <Cards movies ={searchingList}/>
+      {/* <Cards movies ={searchingList}/> */}
+      {/* <CardsTabularLayout movies ={searchingList}/> */}
+      <div>
+        {this.state.radio?<CardsTabularLayout movies ={searchingList}/>:<Cards movies ={searchingList}/>}
+      </div>
       </React.Fragment>
     );
   }
